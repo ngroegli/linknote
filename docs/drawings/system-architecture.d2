@@ -1,0 +1,88 @@
+title: LinkNote System Architecture {
+  shape: text
+  near: top-center
+  style.font-size: 24
+  style.bold: true
+}
+
+direction: down
+
+browser: Browser {
+  shape: rectangle
+  style.fill: "#e3f2fd"
+
+  editor: Text Editor {
+    shape: rectangle
+    style.fill: "#90caf9"
+  }
+
+  preview: Live Preview {
+    shape: rectangle
+    style.fill: "#90caf9"
+  }
+
+  url: URL Fragment {
+    shape: rectangle
+    style.fill: "#64b5f6"
+  }
+}
+
+libraries: External Libraries {
+  shape: rectangle
+  style.fill: "#fff3e0"
+
+  marked: marked.js {
+    shape: rectangle
+    style.fill: "#ffb74d"
+  }
+
+  purify: DOMPurify {
+    shape: rectangle
+    style.fill: "#ffb74d"
+  }
+}
+
+modules: JavaScript Modules {
+  shape: rectangle
+  style.fill: "#f3e5f5"
+
+  urlcodec: URLCodec {
+    shape: rectangle
+    style.fill: "#ba68c8"
+  }
+
+  markdown: MarkdownEngine {
+    shape: rectangle
+    style.fill: "#ba68c8"
+  }
+
+  editor_mgr: EditorManager {
+    shape: rectangle
+    style.fill: "#ba68c8"
+  }
+
+  theme: ThemeManager {
+    shape: rectangle
+    style.fill: "#ba68c8"
+  }
+
+  ui: UIController {
+    shape: rectangle
+    style.fill: "#ba68c8"
+  }
+}
+
+# Connections
+browser.editor -> modules.editor_mgr: User types
+modules.editor_mgr -> modules.markdown: Convert to HTML
+modules.markdown -> libraries.marked: Parse Markdown
+libraries.marked -> modules.markdown: HTML output
+modules.markdown -> libraries.purify: Sanitize HTML
+libraries.purify -> modules.markdown: Safe HTML
+modules.markdown -> browser.preview: Update preview
+modules.editor_mgr -> modules.urlcodec: Encode content
+modules.urlcodec -> browser.url: Update URL fragment
+browser.url -> modules.urlcodec: Load on page load
+modules.urlcodec -> modules.editor_mgr: Decoded content
+modules.theme -> browser: Apply theme styles
+modules.ui -> modules.editor_mgr: Handle user actions

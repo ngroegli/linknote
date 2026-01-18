@@ -1,0 +1,74 @@
+direction: right
+
+user_input: User Input {
+  shape: oval
+  style.fill: "#c8e6c9"
+}
+
+editor: Text Editor {
+  shape: rectangle
+  style.fill: "#90caf9"
+}
+
+urlcodec: URLCodec {
+  shape: rectangle
+  style.fill: "#ba68c8"
+
+  encode: Base64 Encode {
+    shape: step
+  }
+
+  decode: Base64 Decode {
+    shape: step
+  }
+}
+
+markdown: MarkdownEngine {
+  shape: rectangle
+  style.fill: "#ba68c8"
+
+  parse: marked.parse {
+    shape: step
+  }
+
+  sanitize: DOMPurify.sanitize {
+    shape: step
+  }
+}
+
+preview: HTML Preview {
+  shape: rectangle
+  style.fill: "#90caf9"
+}
+
+url_fragment: URL Fragment {
+  shape: cylinder
+  style.fill: "#64b5f6"
+}
+
+# Forward flow (User writes)
+user_input -> editor: Types Markdown
+editor -> markdown.parse: Raw Markdown text
+markdown.parse -> markdown.sanitize: Parsed HTML
+markdown.sanitize -> preview: Safe HTML {
+  style.stroke: "#4caf50"
+  style.stroke-width: 3
+}
+
+editor -> urlcodec.encode: Debounced 500ms
+urlcodec.encode -> url_fragment: Base64 string {
+  style.stroke: "#4caf50"
+  style.stroke-width: 3
+}
+
+# Backward flow (Page load)
+url_fragment -> urlcodec.decode: On page load {
+  style.stroke: "#2196f3"
+  style.stroke-width: 3
+  style.stroke-dash: 3
+}
+urlcodec.decode -> editor: Decoded text {
+  style.stroke: "#2196f3"
+  style.stroke-width: 3
+  style.stroke-dash: 3
+}

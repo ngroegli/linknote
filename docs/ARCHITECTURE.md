@@ -8,6 +8,10 @@ LinkNote is a client-side-only web application built with vanilla JavaScript, HT
 
 ## System Architecture
 
+![System Architecture](drawings/system-architecture.png)
+
+### High-Level Components
+
 ```
 ┌─────────────────────────────────────────────────┐
 │                  Browser                         │
@@ -76,6 +80,8 @@ LinkNote is a client-side-only web application built with vanilla JavaScript, HT
 ---
 
 ## Core Modules
+
+![Module Dependencies](drawings/module-dependencies.png)
 
 ### 1. URLCodec
 
@@ -222,6 +228,8 @@ UIController.showToast(msg)  // Show notification
 ---
 
 ## Data Flow
+
+![Data Flow](drawings/data-flow.png)
 
 ### On Page Load
 
@@ -555,4 +563,4 @@ Just serve the files!
 
 ## License
 
-MIT License - See LICENSE file for details.
+GNU General Public License v3.0 - See LICENSE file for details.

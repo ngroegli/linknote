@@ -2,7 +2,7 @@
 
 **A privacy-first, client-side-only Markdown editor where your content lives in the URL.**
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![No Backend](https://img.shields.io/badge/backend-none-green.svg)
 ![Privacy](https://img.shields.io/badge/privacy-first-orange.svg)
 
@@ -51,21 +51,49 @@
 
 ## 🚀 Quick Start
 
-### Option 1: Open Locally
+### For End Users (No Setup Required)
 
-1. Clone or download this repository
-2. Open `src/index.html` in your web browser
-3. Start writing!
+Open the deployed app and start writing - everything works in your browser!
 
-### Option 2: Deploy to Static Hosting
+### For Developers
 
-Deploy the `src` folder to any static hosting service:
+**First time setup:**
+
+1. Install Node.js (if not already installed):
+   ```bash
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+   source ~/.zshrc
+   nvm install --lts
+   ```
+
+2. Clone and setup:
+   ```bash
+   git clone https://github.com/ngroegli/linknote.git
+   cd linknote
+   npm install
+   ```
+
+3. Start development:
+   ```bash
+   npm run dev
+   ```
+
+4. Build for production:
+   ```bash
+   npm run build
+   ```
+
+📘 **See [docs/QUICKSTART.md](docs/QUICKSTART.md) for detailed setup instructions**
+
+### Deployment
+
+After running `npm run build`, deploy the `dist/` folder to:
 - **GitHub Pages**: Free and easy
 - **Netlify**: Drag and drop deployment
 - **Vercel**: Git integration
 - **Any web server**: Just serve the static files
 
-No build step required—it's just HTML, CSS, and JavaScript!
+The production build includes all dependencies - no external CDN requests needed!
 
 ---
 
@@ -159,7 +187,7 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 - Malicious scripts are automatically removed
 - Event handlers and dangerous attributes are blocked
 - Only safe Markdown/HTML elements are allowed
-- See [DOCS/SECURITY.md](DOCS/SECURITY.md) for detailed security information
+- See [docs/SECURITY.md](docs/SECURITY.md) for detailed security information
 
 ### Security Considerations
 
@@ -173,18 +201,32 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 
 ## 🛠️ Technology Stack
 
+### Frontend
 - **HTML5**: Semantic markup
 - **CSS3**: Modern styling with CSS variables for theming
-- **Vanilla JavaScript**: No framework dependencies
-- **[marked.js](https://github.com/markedjs/marked)**: Markdown parsing (loaded via CDN)
-- **[DOMPurify](https://github.com/cure53/DOMPurify)**: HTML sanitization for XSS protection (loaded via CDN)
+- **Vanilla JavaScript**: No framework dependencies (ES modules)
+
+### Dependencies (npm)
+- **[marked](https://github.com/markedjs/marked)** v11.1.1: Markdown parsing
+- **[DOMPurify](https://github.com/cure53/DOMPurify)** v3.0.8: HTML sanitization for XSS protection
+
+### Build Tools
+- **[Vite](https://vitejs.dev/)**: Fast dev server and production bundler
+- **Node.js & npm**: Dependency management
+
+### Dependency Management
+
+✅ **Clean Repository**
+- Dependencies installed via npm (not committed to git)
+- Production build includes all dependencies (no external CDN)
+- Modern ES module imports
 
 ### Why No Framework?
 
 To keep LinkNote:
 - Fast and lightweight
 - Easy to understand and modify
-- Dependency-free (except marked.js)
+- Minimal dependencies
 - Running forever without maintenance
 
 ---
@@ -193,17 +235,24 @@ To keep LinkNote:
 
 ```
 linknote/
-├── LICENSE                 # MIT license
+├── LICENSE                 # GNU GPL-3.0 license
 ├── README.md              # This file (main documentation)
+├── package.json           # npm dependencies and scripts
+├── vite.config.js         # Vite build configuration
+├── .gitignore             # Git ignore (includes node_modules/)
 ├── src/                   # Application source
-│   ├── index.html        # Main HTML file
+│   ├── index.html        # Main HTML file (uses ES modules)
 │   ├── styles.css        # All styling and themes
-│   └── app.js            # Application logic
-└── DOCS/                  # Documentation
+│   ├── app.js            # Application logic (imports npm packages)
+│   └── assets/           # Brand assets (logos, icons)
+├── dist/                  # Production build output (created by npm run build)
+├── node_modules/          # npm dependencies (NOT committed to git)
+└── docs/                  # Documentation
     ├── ARCHITECTURE.md   # Technical architecture
-    ├── CONTRIBUTING.md   # Contribution guidelines
-    ├── QUICKSTART.md     # Quick start guide
-    └── EXAMPLES.md       # Example Markdown documents
+    ├── DEPENDENCIES.md   # Dependency management comparison
+    ├── QUICKSTART.md     # Quick start & developer setup
+    ├── SECURITY.md       # Security documentation
+    └── drawings/         # Architecture diagrams (D2 + PNG)
 ```
 
 ---
@@ -251,25 +300,71 @@ User types → handleInput() → updatePreview() (immediate)
                           → history.replaceState()
 ```
 
-For detailed technical documentation, see [DOCS/ARCHITECTURE.md](DOCS/ARCHITECTURE.md).
+For detailed technical documentation, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see [DOCS/CONTRIBUTING.md](DOCS/CONTRIBUTING.md) for guidelines.
+Contributions are welcome! We value privacy-first design, simplicity, and accessibility.
+
+### How to Contribute
+
+1. **Fork & Clone**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/linknote.git
+   cd linknote
+   npm install
+   ```
+
+2. **Create a Branch**
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+
+3. **Make Changes**
+   - Edit files in `src/`
+   - Run `npm run dev` for live preview
+   - Follow existing code style
+   - Test thoroughly
+
+4. **Commit & Push**
+   ```bash
+   git add .
+   git commit -m "Add: your feature description"
+   git push origin feature/your-feature-name
+   ```
+
+5. **Open Pull Request**
+   - Go to GitHub and create a PR
+   - Describe your changes clearly
+   - Link any related issues
+
+### Code Style
+
+- **JavaScript**: ES6+, 4-space indent, double quotes, semicolons
+- **CSS**: CSS variables for theming, hyphenated class names
+- **Comments**: JSDoc for functions, section comments for CSS
+- **Keep it simple**: Maintain the minimalist philosophy
+
+### Project Principles
+
+✅ **Privacy First** - No servers, no tracking
+✅ **Simplicity** - Keep codebase small and understandable
+✅ **Minimal Dependencies** - Only essential external libs
+✅ **Accessibility** - Work for everyone, all devices
+✅ **Offline First** - Work without internet after load
 
 ### Ideas for Contributions
 
-- [ ] Add compression to support longer documents
-- [ ] Export to plain Markdown file
-- [ ] Import from file
+- [ ] Compression for longer documents
+- [ ] Export/import Markdown files
 - [ ] More theme options
 - [ ] Keyboard shortcuts
-- [ ] Vim/Emacs keybindings
 - [ ] Syntax highlighting in editor
-- [ ] Word count
-- [ ] Read time estimate
+- [ ] Word count / read time
+- [ ] Multiple notes management
+- [ ] Search within note
 
 ---
 
@@ -277,21 +372,21 @@ Contributions are welcome! Please see [DOCS/CONTRIBUTING.md](DOCS/CONTRIBUTING.m
 
 ### Documentation
 
-- **[DOCS/QUICKSTART.md](DOCS/QUICKSTART.md)** - Quick start guide
+- **[docs/QUICKSTART.md](docs/QUICKSTART.md)** - Quick start guide
   - 2-minute getting started
   - Tips and tricks
   - Troubleshooting
   - Platform-specific notes
   - Use cases
 
-- **[DOCS/EXAMPLES.md](DOCS/EXAMPLES.md)** - Example documents
+- **[docs/EXAMPLES.md](docs/EXAMPLES.md)** - Example documents
   - Meeting notes template
   - Technical documentation template
   - Project README template
   - Study notes template
   - Blog post template
 
-- **[DOCS/ARCHITECTURE.md](DOCS/ARCHITECTURE.md)** - Technical documentation
+- **[docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)** - Technical documentation
   - System architecture
   - Module descriptions
   - Data flow diagrams
@@ -299,14 +394,6 @@ Contributions are welcome! Please see [DOCS/CONTRIBUTING.md](DOCS/CONTRIBUTING.m
   - Browser compatibility
   - Security considerations
   - Future enhancements
-
-- **[DOCS/CONTRIBUTING.md](DOCS/CONTRIBUTING.md)** - Contribution guide
-  - Development setup
-  - Code style guidelines
-  - Testing checklist
-  - PR process
-  - Bug report template
-  - Feature request template
 
 ### Technology Details
 
@@ -330,9 +417,9 @@ Contributions are welcome! Please see [DOCS/CONTRIBUTING.md](DOCS/CONTRIBUTING.m
 
 ## 📄 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+GNU General Public License v3.0 - see [LICENSE](LICENSE) file for details.
 
-Feel free to use, modify, and distribute this project!
+This is free software: you are free to change and redistribute it under the terms of the GPL-3.0 license.
 
 ---
 

@@ -1,0 +1,98 @@
+title: Security Architecture {
+  shape: text
+  near: top-center
+  style.font-size: 24
+  style.bold: true
+}
+
+direction: down
+
+threat: Potential XSS Attack {
+  shape: hexagon
+  style.fill: "#ffcdd2"
+  style.stroke: "#d32f2f"
+  style.stroke-width: 3
+}
+
+user_input: User Markdown Input {
+  shape: rectangle
+  style.fill: "#e3f2fd"
+}
+
+marked_layer: Markdown Parser Layer {
+  shape: rectangle
+  style.fill: "#fff3e0"
+
+  marked: marked.js {
+    shape: rectangle
+    style.fill: "#ffb74d"
+  }
+
+  html_output: HTML Output\n(may contain <script>) {
+    shape: rectangle
+    style.fill: "#ffccbc"
+    style.stroke: "#ff5722"
+    style.stroke-width: 2
+  }
+}
+
+security_layer: Security Layer {
+  shape: rectangle
+  style.fill: "#c8e6c9"
+  style.stroke: "#4caf50"
+  style.stroke-width: 3
+
+  dompurify: DOMPurify.sanitize() {
+    shape: rectangle
+    style.fill: "#81c784"
+  }
+
+  config: Security Config {
+    shape: rectangle
+    style.fill: "#a5d6a7"
+
+    ALLOWED_TAGS
+    ALLOWED_ATTR
+    ALLOWED_URI_REGEXP
+  }
+}
+
+safe_output: Safe HTML Output {
+  shape: rectangle
+  style.fill: "#c8e6c9"
+  style.stroke: "#4caf50"
+  style.stroke-width: 2
+}
+
+dom: Browser DOM {
+  shape: rectangle
+  style.fill: "#e3f2fd"
+
+  preview: innerHTML {
+    shape: rectangle
+    style.fill: "#90caf9"
+  }
+}
+
+# Flow
+threat -> user_input: Malicious Markdown\n<img onerror="alert('XSS')"> {
+  style.stroke: "#d32f2f"
+  style.stroke-width: 2
+}
+
+user_input -> marked_layer.marked
+marked_layer.marked -> marked_layer.html_output: Converts to HTML
+
+marked_layer.html_output -> security_layer.dompurify: HTML with\nmalicious code {
+  style.stroke: "#ff5722"
+  style.stroke-width: 2
+}
+
+security_layer.config -> security_layer.dompurify: Applies rules
+
+security_layer.dompurify -> safe_output: Removes\n<script>, onerror, etc. {
+  style.stroke: "#4caf50"
+  style.stroke-width: 3
+}
+
+safe_output -> dom.preview: Safe to inject

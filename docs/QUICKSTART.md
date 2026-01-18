@@ -282,7 +282,127 @@ Use for:
 
 - [README](../README.md) - Full documentation
 - [ARCHITECTURE](ARCHITECTURE.md) - Technical details
-- [CONTRIBUTING](CONTRIBUTING.md) - Contribution guide
+
+---
+
+## 👨‍💻 For Developers
+
+Want to contribute or run LinkNote locally? Here's how to set up the development environment.
+
+### Prerequisites
+
+You need Node.js installed on your system. Node.js includes npm (Node Package Manager).
+
+#### Installing Node.js
+
+**Option 1: Using nvm (Recommended)**
+
+Linux/macOS:
+```bash
+# Install nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# Restart terminal or run:
+source ~/.zshrc  # or ~/.bashrc if using bash
+
+# Install latest LTS version
+nvm install --lts
+
+# Verify
+node --version && npm --version
+```
+
+Windows:
+- Download [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
+- Run: `nvm install lts` and `nvm use lts`
+
+**Option 2: Direct Install**
+- Download from [nodejs.org](https://nodejs.org/) (LTS version)
+- Verify: `node --version` (should show v18.x.x or higher)
+
+### Development Setup
+
+1. **Clone and Install**
+```bash
+git clone https://github.com/ngroegli/linknote.git
+cd linknote
+npm install
+```
+
+2. **Start Dev Server**
+```bash
+npm run dev
+```
+Opens at http://localhost:3000 with hot-reload
+
+3. **Build for Production**
+```bash
+npm run build
+```
+Creates optimized bundle in `dist/` folder
+
+4. **Preview Production Build**
+```bash
+npm run preview
+```
+Tests the production build locally
+
+### Project Structure
+
+```
+linknote/
+├── src/                  # Source files
+│   ├── index.html       # Main HTML (uses ES modules)
+│   ├── app.js           # Application logic
+│   ├── styles.css       # Styles
+│   └── assets/          # Images, logos, icons
+├── dist/                # Production build output
+├── docs/                # Documentation
+├── node_modules/        # Dependencies (not in git)
+├── package.json         # Dependencies and scripts
+└── vite.config.js       # Build configuration
+```
+
+### Development Workflow
+
+1. Make changes in `src/`
+2. Save (Vite auto-reloads)
+3. Test in dev server
+4. Build with `npm run build`
+5. Commit changes (node_modules/ excluded)
+6. Deploy `dist/` folder
+
+### Deployment
+
+After `npm run build`, deploy the `dist/` folder to:
+- **GitHub Pages** - Free static hosting
+- **Netlify** - Drag & drop or git integration
+- **Vercel** - Auto-deploy from git
+- **Cloudflare Pages** - Fast global CDN
+- **Any web server** - Just static files
+
+The build is self-contained with all dependencies bundled - no external CDN needed!
+
+### Why This Setup?
+
+✅ Clean repo - dependencies not committed to git
+✅ Modern tooling - Vite for fast dev & builds
+✅ Offline-first - production build works without internet
+✅ Easy updates - `npm update` to update packages
+
+### Troubleshooting
+
+**"npm: command not found"**
+→ Node.js not installed. See Prerequisites section.
+
+**Port 3000 already in use**
+→ Change port in `vite.config.js`: `server: { port: 3001 }`
+
+**Module not found errors**
+→ Run `npm install` again
+
+**Build errors**
+→ `rm -rf node_modules package-lock.json && npm install && npm run build`
 
 ---
 
@@ -305,19 +425,6 @@ A: They can edit their copy, creating a new URL. Your original is unchanged.
 
 **Q: Does this work on my phone?**
 A: Yes! Fully responsive and mobile-friendly.
-
----
-
-## 🆘 Getting Help
-
-**Found a bug?**
-- [Report it on GitHub](https://github.com/ngroegli/linknote/issues)
-
-**Have a question?**
-- [Start a discussion](https://github.com/ngroegli/linknote/discussions)
-
-**Want to contribute?**
-- See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 

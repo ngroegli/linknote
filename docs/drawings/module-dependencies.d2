@@ -1,0 +1,109 @@
+title: Module Dependencies {
+  shape: text
+  near: top-center
+  style.font-size: 24
+  style.bold: true
+}
+
+direction: down
+
+# External dependencies
+external: External Libraries {
+  shape: rectangle
+  style.fill: "#fff3e0"
+
+  marked: marked@11.1.1 {
+    shape: package
+    style.fill: "#ffb74d"
+  }
+
+  dompurify: dompurify@3.0.8 {
+    shape: package
+    style.fill: "#ffb74d"
+  }
+}
+
+# Core modules
+core: Core Modules {
+  shape: rectangle
+  style.fill: "#f3e5f5"
+
+  URLCodec: {
+    shape: class
+    style.fill: "#ce93d8"
+
+    "encode()"
+    "decode()"
+  }
+
+  MarkdownEngine: {
+    shape: class
+    style.fill: "#ce93d8"
+
+    "initialize()"
+    "parse()"
+    "renderPreview()"
+  }
+
+  EditorManager: {
+    shape: class
+    style.fill: "#ce93d8"
+
+    "initialize()"
+    "updateURL()"
+    "loadFromURL()"
+    "handleInput()"
+  }
+
+  ThemeManager: {
+    shape: class
+    style.fill: "#ce93d8"
+
+    "initialize()"
+    "toggleTheme()"
+    "applyTheme()"
+  }
+
+  UIController: {
+    shape: class
+    style.fill: "#ce93d8"
+
+    "initialize()"
+    "copyURL()"
+    "clear()"
+    "showToast()"
+  }
+}
+
+# DOM
+dom: Browser DOM {
+  shape: rectangle
+  style.fill: "#e3f2fd"
+
+  textarea: "#editor" {
+    shape: rectangle
+    style.fill: "#90caf9"
+  }
+
+  preview_div: "#preview" {
+    shape: rectangle
+    style.fill: "#90caf9"
+  }
+
+  buttons: UI Buttons {
+    shape: rectangle
+    style.fill: "#90caf9"
+  }
+}
+
+# Dependencies
+core.MarkdownEngine -> external.marked: uses
+core.MarkdownEngine -> external.dompurify: uses
+core.EditorManager -> core.URLCodec: uses
+core.EditorManager -> core.MarkdownEngine: uses
+core.UIController -> core.EditorManager: uses
+core.UIController -> core.ThemeManager: uses
+core.EditorManager -> dom.textarea: reads/writes
+core.MarkdownEngine -> dom.preview_div: updates
+core.UIController -> dom.buttons: handles events
+core.ThemeManager -> dom: applies CSS

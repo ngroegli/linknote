@@ -1,0 +1,32 @@
+{
+  "name": "linknote",
+  "version": "1.0.0",
+  "description": "Privacy-first, client-side Markdown editor with URL-based storage",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "serve": "vite preview"
+  },
+  "keywords": [
+    "markdown",
+    "editor",
+    "privacy",
+    "client-side",
+    "no-backend"
+  ],
+  "author": "Nicolas Groegli",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ngroegli/linknote.git"
+  },
+  "dependencies": {
+    "dompurify": "3.3.1",
+    "marked": "17.0.1"
+  },
+  "devDependencies": {
+    "vite": "7.3.1"
+  }
+}

@@ -8,6 +8,8 @@ LinkNote takes security seriously. This document outlines the security measures 
 
 ## XSS Protection
 
+![Security Architecture](drawings/security-architecture.png)
+
 ### The Problem
 
 Cross-Site Scripting (XSS) is a security vulnerability where malicious scripts are injected into otherwise benign websites. In a Markdown editor, users could potentially write Markdown that contains:

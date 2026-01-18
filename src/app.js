@@ -21,6 +21,9 @@
    - Safe handling of user-generated content
    ============================================ */
 
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+
 "use strict";// ============================================
 // URLCodec - Handles URL fragment encoding/decoding
 // ============================================
@@ -462,19 +465,6 @@ const UIController = {
 // Application initialization
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Check if required libraries are loaded
-    if (typeof marked === 'undefined') {
-        console.error("marked.js library not loaded");
-        alert("Error: Markdown parser not loaded. Please refresh the page.");
-        return;
-    }
-
-    if (typeof DOMPurify === 'undefined') {
-        console.error("DOMPurify library not loaded");
-        alert("Error: Security library not loaded. Please refresh the page.");
-        return;
-    }
-
     // Initialize all modules
     MarkdownEngine.initialize();
     ThemeManager.initialize();
