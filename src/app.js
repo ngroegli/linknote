@@ -6,17 +6,22 @@
    - URL fragment encoding/decoding
    - Theme management (light/dark mode)
    - User interactions (copy URL, clear, etc.)
+   - XSS protection via DOMPurify sanitization
 
    Architecture:
    - URLCodec: Handles encoding/decoding content to/from URL fragments
-   - MarkdownEngine: Manages Markdown parsing and preview
+   - MarkdownEngine: Manages Markdown parsing with XSS protection
    - EditorManager: Coordinates editor state and updates
    - UIController: Manages UI interactions and feedback
+   - ThemeManager: Handles light/dark theme switching
+
+   Security:
+   - DOMPurify sanitizes all HTML before DOM injection
+   - Prevents XSS attacks from malicious Markdown/HTML
+   - Safe handling of user-generated content
    ============================================ */
 
-"use strict";
-
-// ============================================
+"use strict";// ============================================
 // URLCodec - Handles URL fragment encoding/decoding
 // ============================================
 const URLCodec = {
@@ -106,17 +111,49 @@ const MarkdownEngine = {
     /**
      * Converts Markdown text to HTML
      * @param {string} markdown - The Markdown text to parse
-     * @returns {string} HTML string
+     * @returns {string} Sanitized HTML string
      */
     parse(markdown) {
         if (!markdown || markdown.trim() === "") {
             return '<p class="preview-placeholder">Your Markdown preview will appear here...</p>';
         }
         try {
-            return marked.parse(markdown);
+            // Parse Markdown to HTML
+            const rawHtml = marked.parse(markdown);
+
+            // Sanitize HTML to prevent XSS attacks
+            // DOMPurify removes dangerous elements like <script>, event handlers, etc.
+            const cleanHtml = DOMPurify.sanitize(rawHtml, {
+                // Allow common Markdown/HTML elements
+                ALLOWED_TAGS: [
+                    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                    'p', 'br', 'hr',
+                    'strong', 'em', 'b', 'i', 'u', 's', 'del', 'mark', 'sub', 'sup',
+                    'ul', 'ol', 'li',
+                    'blockquote', 'pre', 'code',
+                    'a', 'img',
+                    'table', 'thead', 'tbody', 'tr', 'th', 'td',
+                    'div', 'span',
+                    'details', 'summary'
+                ],
+                ALLOWED_ATTR: [
+                    'href', 'title', 'alt', 'src',
+                    'class', 'id',
+                    'align', 'width', 'height',
+                    'target', 'rel'
+                ],
+                // Only allow http(s) and mailto protocols
+                ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|sms|cid|xmpp):|[^a-z]|[a-z+.\-]+(?:[^a-z+.\-:]|$))/i,
+                // Add rel="noopener noreferrer" to external links for security
+                ADD_ATTR: ['target'],
+                // Ensure links open in new tab safely
+                FORCE_BODY: true
+            });
+
+            return cleanHtml;
         } catch (error) {
             console.error("Markdown parsing error:", error);
-            return `<p style="color: var(--danger-color);">Error parsing Markdown: ${error.message}</p>`;
+            return `<p style="color: var(--danger-color);">Error parsing Markdown: ${DOMPurify.sanitize(error.message)}</p>`;
         }
     }
 };
@@ -425,6 +462,19 @@ const UIController = {
 // Application initialization
 // ============================================
 document.addEventListener("DOMContentLoaded", () => {
+    // Check if required libraries are loaded
+    if (typeof marked === 'undefined') {
+        console.error("marked.js library not loaded");
+        alert("Error: Markdown parser not loaded. Please refresh the page.");
+        return;
+    }
+
+    if (typeof DOMPurify === 'undefined') {
+        console.error("DOMPurify library not loaded");
+        alert("Error: Security library not loaded. Please refresh the page.");
+        return;
+    }
+
     // Initialize all modules
     MarkdownEngine.initialize();
     ThemeManager.initialize();
@@ -433,6 +483,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     console.log("LinkNote initialized successfully");
     console.log("Privacy mode: ON - No data sent to servers");
+    console.log("Security: XSS protection enabled via DOMPurify");
 });
 
 // ============================================

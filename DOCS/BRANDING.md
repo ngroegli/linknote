@@ -6,7 +6,7 @@
 
 ### Color Scheme
 - **Primary Brand Color**: `#001a70` (Deep Blue)
-- **Secondary Colors**: 
+- **Secondary Colors**:
   - Light: `#0d2d8f`
   - Lighter: `#1a3fa5`
   - Dark: `#00123d`
@@ -49,7 +49,7 @@ src/assets/
 ```
 
 ### UI Updates
-1. **Header**: 
+1. **Header**:
    - Logo + title combination
    - Brand blue color for title
    - Cleaner spacing

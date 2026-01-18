@@ -142,7 +142,7 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 - ❌ No localStorage (except theme preference)
 - ❌ No analytics
 - ❌ No tracking
-- ❌ No external API calls (except for the Markdown library CDN)
+- ❌ No external API calls (except for CDN libraries)
 
 ### What This Means for You
 
@@ -151,6 +151,15 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 - **Your Data, Your Control**: You control the URL, you control the content
 - **Cannot Be Censored**: No one can delete or modify your documents except you
 - **No Data Breaches**: There's no database to breach
+
+### XSS Protection
+
+✅ **LinkNote protects against XSS attacks**
+- **DOMPurify** sanitizes all HTML before rendering
+- Malicious scripts are automatically removed
+- Event handlers and dangerous attributes are blocked
+- Only safe Markdown/HTML elements are allowed
+- See [DOCS/SECURITY.md](DOCS/SECURITY.md) for detailed security information
 
 ### Security Considerations
 
@@ -168,6 +177,7 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 - **CSS3**: Modern styling with CSS variables for theming
 - **Vanilla JavaScript**: No framework dependencies
 - **[marked.js](https://github.com/markedjs/marked)**: Markdown parsing (loaded via CDN)
+- **[DOMPurify](https://github.com/cure53/DOMPurify)**: HTML sanitization for XSS protection (loaded via CDN)
 
 ### Why No Framework?
 
