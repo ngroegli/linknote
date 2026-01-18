@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkNote - Privacy-First Markdown Editor</title>
+    
+    <!-- Favicon - falls back to SVG if PNG not available -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    
+    <!-- Google Fonts - Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header with app title and controls -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="app-title-wrapper">
+                <img src="assets/logo.svg" alt="LinkNote Logo" class="app-logo" onerror="this.style.display='none'">
+                <h1 class="app-title">LinkNote</h1>
+            </div>
+            <p class="app-subtitle">Privacy-first Markdown editor. Your content stays in the URL.</p>
+        </div>
+        <div class="header-controls">
+            <button id="copyUrlBtn" class="btn btn-primary" title="Copy shareable URL">
+                📋 Copy URL
+            </button>
+            <button id="clearBtn" class="btn btn-secondary" title="Clear all content">
+                🗑️ Clear
+            </button>
+            <button id="themeToggle" class="btn btn-icon" title="Toggle light/dark mode">
+                🌓
+            </button>
+        </div>
+    </header>
+
+    <!-- Warning banner for large URLs -->
+    <div id="urlWarning" class="warning-banner hidden">
+        ⚠️ Your document is getting large. URLs over 2000 characters may not work in all browsers.
+    </div>
+
+    <!-- Main content area with split view -->
+    <main class="app-main">
+        <!-- Left panel: Markdown editor -->
+        <section class="editor-panel">
+            <div class="panel-header">
+                <h2>Editor</h2>
+                <span id="charCount" class="char-count">0 characters</span>
+            </div>
+            <textarea
+                id="markdownEditor"
+                class="markdown-editor"
+                placeholder="Start typing your Markdown here...
+
+# Example Heading
+## Subheading
+
+**Bold text** and *italic text*
+
+- List item 1
+- List item 2
+
+[Link](https://example.com)
+
+> Blockquote
+
+```
+Code block
+```
+"
+                spellcheck="true"
+                autocomplete="off"
+                autocorrect="off"
+            ></textarea>
+        </section>
+
+        <!-- Right panel: Live preview -->
+        <section class="preview-panel">
+            <div class="panel-header">
+                <h2>Preview</h2>
+            </div>
+            <div id="markdownPreview" class="markdown-preview">
+                <p class="preview-placeholder">Your Markdown preview will appear here...</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer with info and status -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <span class="footer-text">
+                No server • No tracking • No storage • Your data never leaves your browser
+            </span>
+            <span id="urlLength" class="url-length">URL: 0 chars</span>
+        </div>
+    </footer>
+
+    <!-- Toast notification for user feedback -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Include the Markdown parsing library (marked.js) from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+
+    <!-- Main application script -->
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#001a70"/>
+  
+  <!-- Link chain symbol -->
+  <g transform="translate(6, 6)">
+    <!-- Left link -->
+    <path d="M7 9C7 7.34315 8.34315 6 10 6H11C12.6569 6 14 7.34315 14 9V10" 
+          stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Right link -->
+    <path d="M13 11C13 12.6569 11.6569 14 10 14H9C7.34315 14 6 12.6569 6 11V10" 
+          stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <!-- Connecting line -->
+    <line x1="10" y1="8" x2="10" y2="12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>
