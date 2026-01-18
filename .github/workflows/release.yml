@@ -19,6 +19,8 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - name: Checkout code
@@ -30,10 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '25.x'
-          cache: 'npm'
+          cache: ''
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Run tests and build
         run: |
@@ -87,10 +89,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '25.x'
-          cache: 'npm'
+          cache: ''
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build production bundle
         run: npm run build
@@ -119,7 +121,7 @@ jobs:
           retention-days: 90
 
   release:
-    needs: build
+    needs: [validate, build]
     runs-on: ubuntu-latest
     permissions:
       contents: write

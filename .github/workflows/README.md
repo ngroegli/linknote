@@ -37,9 +37,11 @@ This directory contains automated workflows for LinkNote.
 
 **What it does:**
 - Runs `npm audit` for dependency vulnerabilities
+- ESLint security plugin scans for vulnerable code patterns
+- Checks for dangerous functions (eval, innerHTML without DOMPurify)
+- OWASP Dependency-Check for comprehensive vulnerability analysis
 - Checks for exposed secrets in code
 - Validates dependency licenses
-- Runs CodeQL analysis
 - Creates GitHub issues for vulnerabilities found during scheduled scans
 - Generates security reports
 
@@ -102,7 +104,7 @@ git push origin v1.0.0
 ### Test CI locally
 ```bash
 # Install dependencies
-npm ci
+npm install
 
 # Run build
 npm run build
