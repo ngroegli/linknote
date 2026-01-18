@@ -32,9 +32,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '25.x'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run tests and build
         run: |
@@ -88,9 +89,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '25.x'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build production bundle
         run: npm run build
