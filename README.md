@@ -5,6 +5,8 @@
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![No Backend](https://img.shields.io/badge/backend-none-green.svg)
 ![Privacy](https://img.shields.io/badge/privacy-first-orange.svg)
+![CI](https://github.com/ngroegli/linknote/workflows/CI/badge.svg)
+![Security](https://github.com/ngroegli/linknote/workflows/Security/badge.svg)
 
 **Status**: ✅ Complete and Ready to Use
 
