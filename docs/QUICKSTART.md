@@ -348,7 +348,6 @@ npm run preview
 Tests the production build locally
 
 ### Project Structure
-
 ```
 linknote/
 ├── src/                  # Source files
@@ -357,10 +356,22 @@ linknote/
 │   ├── styles.css       # Styles
 │   └── assets/          # Images, logos, icons
 ├── dist/                # Production build output
+│   ├── index.html       # Built HTML
+│   ├── assets/          # Built JS/CSS/images
+│   ├── ai.txt           # AI crawler policy
+│   ├── llms.txt         # LLM crawler policy
+│   ├── robots.txt       # Search engine crawler policy
+│   └── .well-known/     # Security and metadata
+│       └── security.txt # Security contact info
 ├── docs/                # Documentation
 ├── node_modules/        # Dependencies (not in git)
 ├── package.json         # Dependencies and scripts
-└── vite.config.js       # Build configuration
+├── vite.config.js       # Build configuration
+├── ai.txt               # AI/LLM crawler policy (copied to dist)
+├── llms.txt             # LLM crawler policy (copied to dist)
+├── robots.txt           # Search crawler policy (copied to dist)
+└── .well-known/         # Security metadata (copied to dist)
+    └── security.txt
 ```
 
 ### Development Workflow
@@ -368,7 +379,7 @@ linknote/
 1. Make changes in `src/`
 2. Save (Vite auto-reloads)
 3. Test in dev server
-4. Build with `npm run build`
+4. Build with `npm run build` (auto-copies txt files and .well-known/)
 5. Commit changes (node_modules/ excluded)
 6. Deploy `dist/` folder
 
