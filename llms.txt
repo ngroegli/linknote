@@ -1,0 +1,15 @@
+# llms.txt
+
+# This file indicates to Large Language Models (LLMs) and AI systems
+# how to interact with this website.
+
+# Block all AI/LLM crawling and indexing
+User-agent: *
+Disallow: /
+
+# Additional directives
+Allow: None
+Crawl-delay: 0
+
+# Purpose: Prevent AI training data collection
+# This site should not be used for training language models

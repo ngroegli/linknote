@@ -4,23 +4,32 @@ Get up and running with LinkNote in 2 minutes!
 
 ---
 
-## 🚀 For Users
+## For Users
 
 ### Step 1: Open LinkNote
 
-**Option A**: Visit the hosted version
+**Option A**: Visit the official version
+- Go to the URL [https://linknote.groeg.li](https://linknote.groeg.li)
+
+**Option B**: Visit the hosted version
 - Go to your LinkNote URL (e.g., `https://yourdomain.com/linknote`)
 
-**Option B**: Run locally
+**Option C**: Run locally
 ```bash
 # Clone the repo
 git clone https://github.com/ngroegli/linknote.git
-cd linknote/src
+cd linknote
 
-# Open index.html in your browser
-# Or run a local server:
-python3 -m http.server 8000
-# Then visit http://localhost:8000
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+# Opens automatically at http://localhost:3000
+
+# Or build and preview production version
+npm run build
+npm run preview
 ```
 
 ### Step 2: Start Writing
@@ -43,7 +52,7 @@ python3 -m http.server 8000
 
 ---
 
-## 💡 Tips & Tricks
+## Tips & Tricks
 
 ### Markdown Basics
 
@@ -71,13 +80,6 @@ code block
 ```
 ```
 
-### Keyboard Tips
-
-- **Tab**: Indent (in editor)
-- **Ctrl/Cmd + A**: Select all
-- **Ctrl/Cmd + C/V**: Copy/paste
-- **F11**: Fullscreen (browser)
-
 ### URL Management
 
 ✅ **DO**:
@@ -100,7 +102,7 @@ code block
 
 ---
 
-## 🎨 Customization
+## Customization
 
 ### Theme Toggle
 
@@ -119,7 +121,7 @@ LinkNote works great on mobile:
 
 ---
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
 ### Sharing Documents
 
@@ -134,7 +136,7 @@ https://example.com/#IyBIZWxsbyBXb3JsZA~~
 Use a URL shortener if needed:
 https://bit.ly/your-short-url
 ```
-⚠️ Note: Using a shortener adds a server dependency
+⚠️ Note: Using a shortener adds a server dependency and poses security risks
 
 ### Embedding Images
 
@@ -166,7 +168,7 @@ If your URL gets too long:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Preview Not Showing
 
@@ -202,31 +204,7 @@ If your URL gets too long:
 
 ---
 
-## 📱 Platform-Specific Notes
-
-### iOS Safari
-
-- Works great, but clipboard API may require permission
-- Add to Home Screen for app-like experience
-- Use Share button to send URLs
-
-### Android Chrome
-
-- Full support for all features
-- "Add to Home Screen" supported
-- Background tabs may reload (save URL first)
-
-### Desktop Browsers
-
-All major browsers fully supported:
-- Chrome/Chromium
-- Firefox
-- Safari
-- Edge
-
----
-
-## 🎯 Use Cases
+## Use Cases
 
 ### 1. Quick Notes
 
@@ -270,7 +248,7 @@ Use for:
 
 ---
 
-## 🔗 Resources
+## Resources
 
 ### Learn Markdown
 
@@ -285,7 +263,7 @@ Use for:
 
 ---
 
-## 👨‍💻 For Developers
+## For Developers
 
 Want to contribute or run LinkNote locally? Here's how to set up the development environment.
 
@@ -300,7 +278,7 @@ You need Node.js installed on your system. Node.js includes npm (Node Package Ma
 Linux/macOS:
 ```bash
 # Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/<VERSION>/install.sh | bash
 
 # Restart terminal or run:
 source ~/.zshrc  # or ~/.bashrc if using bash
@@ -318,7 +296,7 @@ Windows:
 
 **Option 2: Direct Install**
 - Download from [nodejs.org](https://nodejs.org/) (LTS version)
-- Verify: `node --version` (should show v18.x.x or higher)
+- Verify: `node --version`
 
 ### Development Setup
 
@@ -348,7 +326,6 @@ npm run preview
 Tests the production build locally
 
 ### Project Structure
-
 ```
 linknote/
 ├── src/                  # Source files
@@ -357,10 +334,22 @@ linknote/
 │   ├── styles.css       # Styles
 │   └── assets/          # Images, logos, icons
 ├── dist/                # Production build output
+│   ├── index.html       # Built HTML
+│   ├── assets/          # Built JS/CSS/images
+│   ├── ai.txt           # AI crawler policy
+│   ├── llms.txt         # LLM crawler policy
+│   ├── robots.txt       # Search engine crawler policy
+│   └── .well-known/     # Security and metadata
+│       └── security.txt # Security contact info
 ├── docs/                # Documentation
 ├── node_modules/        # Dependencies (not in git)
 ├── package.json         # Dependencies and scripts
-└── vite.config.js       # Build configuration
+├── vite.config.js       # Build configuration
+├── ai.txt               # AI/LLM crawler policy (copied to dist)
+├── llms.txt             # LLM crawler policy (copied to dist)
+├── robots.txt           # Search crawler policy (copied to dist)
+└── .well-known/         # Security metadata (copied to dist)
+    └── security.txt
 ```
 
 ### Development Workflow
@@ -368,7 +357,7 @@ linknote/
 1. Make changes in `src/`
 2. Save (Vite auto-reloads)
 3. Test in dev server
-4. Build with `npm run build`
+4. Build with `npm run build` (auto-copies txt files and .well-known/)
 5. Commit changes (node_modules/ excluded)
 6. Deploy `dist/` folder
 

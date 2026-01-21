@@ -180,8 +180,8 @@ Content in the URL fragment is Base64-encoded, not executed as code.
 
 ### 5. Library Security
 
-- **marked.js**: v11.1.1 - Updated regularly, no known vulnerabilities
-- **DOMPurify**: v3.0.8 - Industry-standard HTML sanitizer, actively maintained
+- **marked.js**: Updated regularly, no known vulnerabilities
+- **DOMPurify**: Industry-standard HTML sanitizer, actively maintained
 
 ---
 
@@ -192,15 +192,11 @@ Content in the URL fragment is Base64-encoded, not executed as code.
 ✅ **XSS via Markdown**: Malicious scripts in user content
 ✅ **XSS via URL**: Malicious scripts in shared URLs
 ✅ **HTML injection**: Arbitrary HTML that could break the page
-✅ **Phishing links**: Partially (warns if URL is suspicious)
 
 ### What LinkNote Does NOT Protect Against
 
 ❌ **URL Privacy**: URLs are visible in browser history and can be shared
 ❌ **Content Privacy**: Anyone with the URL can read the content
-❌ **Man-in-the-Middle**: Use HTTPS to protect against MITM attacks
-❌ **Browser Vulnerabilities**: Use updated browsers
-❌ **Physical Access**: Lock your device
 
 ---
 

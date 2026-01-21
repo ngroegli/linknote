@@ -1,0 +1,12 @@
+Contact: mailto:security@groeg.li
+Expires: 2027-01-20T00:00:00.000Z
+Preferred-Languages: en, de
+Canonical: https://groeg.li/.well-known/security.txt
+
+# Security Contact Information
+# This file follows RFC 9116 (https://www.rfc-editor.org/rfc/rfc9116.html)
+#
+# If you discover a security vulnerability on this website,
+# please report it responsibly to the email address above.
+#
+# Expected response time: 72 hours
