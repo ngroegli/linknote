@@ -2,23 +2,23 @@
    CSS Variables for theming
    ============================================ */
 :root {
-    /* Brand colors */
-    --brand-blue: #001a70;
-    --brand-blue-light: #0d2d8f;
-    --brand-blue-lighter: #1a3fa5;
-    --brand-blue-dark: #00123d;
+    /* Brand colors - aligned with BRANDING_GUIDELINE.md */
+    --brand-blue: #001a70;          /* Primary Blue */
+    --brand-blue-mid: #0027A8;      /* Blue Mid - hover states */
+    --brand-blue-light: #4D63C8;    /* Blue Light - secondary accents */
+    --brand-blue-dark: #000F3D;     /* Blue Dark - dark theme background */
 
     /* Light mode colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8f9fb;
-    --bg-tertiary: #e8ecf3;
-    --text-primary: #001a70;
-    --text-secondary: #0d2d8f;
-    --text-muted: #6b7280;
-    --border-color: #d1d5db;
-    --accent-color: #001a70;
-    --accent-hover: #00123d;
-    --success-color: #10b981;
+    --bg-primary: #ffffff;          /* White background */
+    --bg-secondary: #f8f9fb;        /* Subtle gray for secondary surfaces */
+    --bg-tertiary: #e8ecf3;         /* Slightly darker for tertiary surfaces */
+    --text-primary: #001a70;        /* Primary Blue for main text */
+    --text-secondary: #001a70;      /* Primary Blue for secondary text */
+    --text-muted: #6b7280;          /* Gray Mid for muted text */
+    --border-color: #E5E7EB;        /* Gray Light for borders */
+    --accent-color: #001a70;        /* Primary Blue for accents */
+    --accent-hover: #0027A8;        /* Blue Mid for hover */
+    --success-color: #10b981;       /* Keep functional colors */
     --warning-color: #f59e0b;
     --danger-color: #ef4444;
     --shadow-sm: 0 1px 2px 0 rgba(0, 26, 112, 0.05);
@@ -26,18 +26,18 @@
     --shadow-lg: 0 10px 15px -3px rgba(0, 26, 112, 0.15);
 }
 
-/* Dark mode colors */
+/* Dark mode colors - aligned with BRANDING_GUIDELINE.md */
 [data-theme="dark"] {
-    --bg-primary: #0a0f1e;
-    --bg-secondary: #121827;
-    --bg-tertiary: #1e2639;
-    --text-primary: #f8f9fb;
-    --text-secondary: #d1d5db;
-    --text-muted: #9ca3af;
-    --border-color: #2d3748;
-    --accent-color: #4a7eff;
-    --accent-hover: #6b96ff;
-    --success-color: #34d399;
+    --bg-primary: #1E1E1E;        /* Gray Dark for surfaces */
+    --bg-secondary: #000F3D;          /* Blue Dark for background */
+    --bg-tertiary: #2d3748;         /* Slightly lighter for tertiary */
+    --text-primary: #FFFFFF;        /* White for primary text */
+    --text-secondary: #d1d5db;      /* Light gray for secondary */
+    --text-muted: #9CA3AF;          /* Gray Mid for muted text */
+    --border-color: #2d3748;        /* Dark borders */
+    --accent-color: #4D63C8;        /* Blue Light for accents */
+    --accent-hover: #6b84d8;        /* Slightly lighter for hover */
+    --success-color: #34d399;       /* Keep functional colors */
     --warning-color: #fbbf24;
     --danger-color: #f87171;
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.4);
@@ -229,6 +229,12 @@ body {
     overflow: hidden;
 }
 
+/* Dark theme: swap panel and header backgrounds */
+[data-theme="dark"] .editor-panel,
+[data-theme="dark"] .preview-panel {
+    background-color: var(--bg-secondary);
+}
+
 .editor-panel {
     border-right: 1px solid var(--border-color);
 }
@@ -246,6 +252,11 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: var(--bg-secondary);
+}
+
+/* Dark theme: swap header background to dark blue */
+[data-theme="dark"] .panel-header {
     background-color: var(--bg-secondary);
 }
 
@@ -282,7 +293,8 @@ body {
 
 .markdown-editor::placeholder {
     color: var(--text-muted);
-    opacity: 0.6;
+    font-style: italic;
+    opacity: 1;
 }
 
 .markdown-editor:focus {
