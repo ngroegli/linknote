@@ -1,15 +1,34 @@
-# llms.txt
+# LinkNote - llms.txt
 
-# This file indicates to Large Language Models (LLMs) and AI systems
-# how to interact with this website.
+# About
+LinkNote is a privacy-first, client-side-only Markdown editor where content lives in the URL.
+Everything runs in the browser with zero server interaction.
 
-# Block all AI/LLM crawling and indexing
-User-agent: *
-Disallow: /
+# Tech Stack
+- Frontend: Vanilla JavaScript (ES6+), HTML5, CSS3
+- Dependencies: marked.js (Markdown parsing), DOMPurify (XSS protection)
+- Build: Vite, Node.js, npm
+- Architecture: 5 modular components (URLCodec, MarkdownEngine, EditorManager, ThemeManager, UIController)
 
-# Additional directives
-Allow: None
-Crawl-delay: 0
+# Key Features
+- Client-side only (no backend, no database, no API)
+- URL-based storage (content encoded in URL fragment)
+- Real-time Markdown preview
+- Light/dark theme support
+- Privacy by design (no tracking, no analytics, no cookies)
+- XSS protection with DOMPurify
 
-# Purpose: Prevent AI training data collection
-# This site should not be used for training language models
+# Project Structure
+- src/: Application source (index.html, styles.css, app.js, assets/)
+- docs/: Documentation (ARCHITECTURE.md, QUICKSTART.md, SECURITY.md, BRANDING_GUIDELINE.md)
+- .github/workflows/: CI/CD (ci.yml, security.yml, release.yml)
+- dist/: Production build output
+
+# Documentation
+Main docs: README.md, docs/ARCHITECTURE.md, docs/QUICKSTART.md, docs/SECURITY.md
+
+# License
+GNU GPL-3.0
+
+# Repository
+https://github.com/ngroegli/linknote

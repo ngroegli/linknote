@@ -1,5 +1,5 @@
 Contact: mailto:security@groeg.li
-Expires: 2027-01-20T00:00:00.000Z
+Expires: 2027-01-21T00:00:00.000Z
 Preferred-Languages: en, de
 Canonical: https://groeg.li/.well-known/security.txt
 

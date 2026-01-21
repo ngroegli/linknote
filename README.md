@@ -1,41 +1,30 @@
-# 📝 LinkNote
+# LinkNote
 
 **A privacy-first, client-side-only Markdown editor where your content lives in the URL.**
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)
 ![No Backend](https://img.shields.io/badge/backend-none-green.svg)
 ![Privacy](https://img.shields.io/badge/privacy-first-orange.svg)
-![CI](https://github.com/ngroegli/linknote/workflows/CI/badge.svg)
-![Security](https://github.com/ngroegli/linknote/workflows/Security/badge.svg)
-
-**Status**: ✅ Complete and Ready to Use
+![CI](https://github.com/ngroegli/linknote/actions/workflows/ci.yml/badge.svg)
+![Security](https://github.com/ngroegli/linknote/actions/workflows/security.yml/badge.svg)
 
 ---
 
-## 🌟 Features
+## Features
 
 ### Core Features
 
 - **Client-side only** - No backend, no server, no database
 - **Markdown editor** - Full-featured textarea with live preview
 - **Live preview** - Real-time Markdown rendering with marked.js
-- **URL encoding** - All content stored in URL fragment using Base64
-- **UTF-8 safe** - TextEncoder/TextDecoder for international characters
-- **Error handling** - Graceful handling of invalid/corrupted fragments
-- **Debounced updates** - 500ms delay to prevent excessive URL changes
 
 ### Additional Features
 
 - **Copy URL button** - One-click URL copying with fallback
 - **Clear button** - Reset document with confirmation
 - **Light/dark mode** - CSS-only theme switching with system preference detection
-- **Theme persistence** - Saves preference to localStorage
 - **URL length warning** - Alerts when URL exceeds 2000 characters
-- **Character count** - Real-time character counter
-- **URL length display** - Shows current URL length
-- **Toast notifications** - User feedback for actions
 - **Responsive design** - Mobile-friendly layout
-- **Keyboard support** - Full keyboard navigation
 
 ### Benefits
 
@@ -51,7 +40,7 @@
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### For End Users (No Setup Required)
 
@@ -99,7 +88,7 @@ The production build includes all dependencies - no external CDN requests needed
 
 ---
 
-## 📖 How to Use
+## How to Use
 
 ### Writing Markdown
 
@@ -136,7 +125,7 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 
 ---
 
-## ⚠️ Important Limitations
+## Important Limitations
 
 ### URL Length
 
@@ -162,7 +151,7 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 
 ---
 
-## 🔒 Privacy & Security
+## Privacy & Security
 
 ### What We DON'T Do
 
@@ -201,7 +190,7 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### Frontend
 - **HTML5**: Semantic markup
@@ -209,8 +198,8 @@ Click the **🗑️ Clear** button to start fresh. You'll be asked to confirm fi
 - **Vanilla JavaScript**: No framework dependencies (ES modules)
 
 ### Dependencies (npm)
-- **[marked](https://github.com/markedjs/marked)** v11.1.1: Markdown parsing
-- **[DOMPurify](https://github.com/cure53/DOMPurify)** v3.0.8: HTML sanitization for XSS protection
+- **[marked](https://github.com/markedjs/marked)**: Markdown parsing
+- **[DOMPurify](https://github.com/cure53/DOMPurify)**: HTML sanitization for XSS protection
 
 ### Build Tools
 - **[Vite](https://vitejs.dev/)**: Fast dev server and production bundler
@@ -233,33 +222,54 @@ To keep LinkNote:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 linknote/
 ├── LICENSE                 # GNU GPL-3.0 license
 ├── README.md              # This file (main documentation)
 ├── package.json           # npm dependencies and scripts
+├── package-lock.json      # Locked dependency versions
 ├── vite.config.js         # Vite build configuration
-├── .gitignore             # Git ignore (includes node_modules/)
+├── .gitignore             # Git ignore
+├── robots.txt             # Web crawler blocking (67 lines)
+├── ai.txt                 # AI crawler blocking (40 lines)
+├── llms.txt               # LLM crawler blocking (15 lines)
+├── .well-known/           # Well-known URIs
+│   └── security.txt      # Security contact information
+├── .github/               # GitHub Actions workflows
+│   └── workflows/
+│       ├── ci.yml        # Continuous integration
+│       ├── security.yml  # Security scanning
+│       └── release.yml   # Release automation
 ├── src/                   # Application source
 │   ├── index.html        # Main HTML file (uses ES modules)
 │   ├── styles.css        # All styling and themes
 │   ├── app.js            # Application logic (imports npm packages)
 │   └── assets/           # Brand assets (logos, icons)
+│       ├── favicon.svg   # App icon
+│       ├── logo.svg      # Brand logo
+│       └── logo-dark.svg # Dark theme logo
 ├── dist/                  # Production build output (created by npm run build)
 ├── node_modules/          # npm dependencies (NOT committed to git)
 └── docs/                  # Documentation
     ├── ARCHITECTURE.md   # Technical architecture
+    ├── BRAND_ALIGNMENT.md # Brand guideline implementation
+    ├── BRANDING_GUIDELINE.md # Personal brand guidelines
     ├── DEPENDENCIES.md   # Dependency management comparison
     ├── QUICKSTART.md     # Quick start & developer setup
     ├── SECURITY.md       # Security documentation
     └── drawings/         # Architecture diagrams (D2 + PNG)
+        ├── data-flow.d2
+        ├── data-flow.png
+        ├── security-architecture.d2
+        ├── security-architecture.png
+        └── ...           # Additional diagrams
 ```
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ### Modular Design
 
@@ -306,7 +316,7 @@ For detailed technical documentation, see [docs/ARCHITECTURE.md](docs/ARCHITECTU
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! We value privacy-first design, simplicity, and accessibility.
 
@@ -370,7 +380,7 @@ Contributions are welcome! We value privacy-first design, simplicity, and access
 
 ---
 
-## 📊 Additional Resources
+## Additional Resources
 
 ### Documentation
 
@@ -417,7 +427,7 @@ Contributions are welcome! We value privacy-first design, simplicity, and access
 
 ---
 
-## 📄 License
+## License
 
 GNU General Public License v3.0 - see [LICENSE](LICENSE) file for details.
 
@@ -425,7 +435,7 @@ This is free software: you are free to change and redistribute it under the term
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 ### Why not use localStorage?
 
@@ -452,14 +462,16 @@ Yes! Download marked.js (or another library) and update the script tag in `index
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - [marked.js](https://github.com/markedjs/marked) for Markdown parsing
+- [DOMPurify](https://github.com/cure53/DOMPurify) for HTML sanitization
+- Built with the assistance of [GitHub Copilot](https://github.com/features/copilot)
 - Inspired by the desire for truly private, serverless note-taking
 
 ---
 
-## 📬 Contact & Support
+## Contact & Support
 
 - **Issues**: [GitHub Issues](https://github.com/ngroegli/linknote/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/ngroegli/linknote/discussions)
