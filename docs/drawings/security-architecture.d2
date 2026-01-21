@@ -3,6 +3,7 @@ title: Security Architecture {
   near: top-center
   style.font-size: 24
   style.bold: true
+  style.font-color: "#000000"
 }
 
 direction: down
@@ -12,20 +13,24 @@ threat: Potential XSS Attack {
   style.fill: "#ffcdd2"
   style.stroke: "#d32f2f"
   style.stroke-width: 3
+  style.font-color: "#b71c1c"
 }
 
 user_input: User Markdown Input {
   shape: rectangle
   style.fill: "#e3f2fd"
+  style.font-color: "#0d47a1"
 }
 
 marked_layer: Markdown Parser Layer {
   shape: rectangle
   style.fill: "#fff3e0"
+  style.font-color: "#e65100"
 
   marked: marked.js {
     shape: rectangle
     style.fill: "#ffb74d"
+    style.font-color: "#e65100"
   }
 
   html_output: HTML Output\n(may contain <script>) {
@@ -33,6 +38,7 @@ marked_layer: Markdown Parser Layer {
     style.fill: "#ffccbc"
     style.stroke: "#ff5722"
     style.stroke-width: 2
+    style.font-color: "#d84315"
   }
 }
 
@@ -41,15 +47,18 @@ security_layer: Security Layer {
   style.fill: "#c8e6c9"
   style.stroke: "#4caf50"
   style.stroke-width: 3
+  style.font-color: "#1b5e20"
 
   dompurify: DOMPurify.sanitize() {
     shape: rectangle
     style.fill: "#81c784"
+    style.font-color: "#1b5e20"
   }
 
   config: Security Config {
     shape: rectangle
     style.fill: "#a5d6a7"
+    style.font-color: "#1b5e20"
 
     ALLOWED_TAGS
     ALLOWED_ATTR
@@ -62,15 +71,18 @@ safe_output: Safe HTML Output {
   style.fill: "#c8e6c9"
   style.stroke: "#4caf50"
   style.stroke-width: 2
+  style.font-color: "#1b5e20"
 }
 
 dom: Browser DOM {
   shape: rectangle
   style.fill: "#e3f2fd"
+  style.font-color: "#0d47a1"
 
   preview: innerHTML {
     shape: rectangle
     style.fill: "#90caf9"
+    style.font-color: "#01579b"
   }
 }
 

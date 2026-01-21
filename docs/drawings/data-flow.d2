@@ -3,47 +3,57 @@ direction: right
 user_input: User Input {
   shape: oval
   style.fill: "#c8e6c9"
+  style.font-color: "#1b5e20"
 }
 
 editor: Text Editor {
   shape: rectangle
   style.fill: "#90caf9"
+  style.font-color: "#0d47a1"
 }
 
 urlcodec: URLCodec {
   shape: rectangle
   style.fill: "#ba68c8"
+  style.font-color: "#4a148c"
 
   encode: Base64 Encode {
     shape: step
+    style.font-color: "#4a148c"
   }
 
   decode: Base64 Decode {
     shape: step
+    style.font-color: "#4a148c"
   }
 }
 
 markdown: MarkdownEngine {
   shape: rectangle
   style.fill: "#ba68c8"
+  style.font-color: "#4a148c"
 
   parse: marked.parse {
     shape: step
+    style.font-color: "#4a148c"
   }
 
   sanitize: DOMPurify.sanitize {
     shape: step
+    style.font-color: "#4a148c"
   }
 }
 
 preview: HTML Preview {
   shape: rectangle
   style.fill: "#90caf9"
+  style.font-color: "#0d47a1"
 }
 
 url_fragment: URL Fragment {
   shape: cylinder
   style.fill: "#64b5f6"
+  style.font-color: "#01579b"
 }
 
 # Forward flow (User writes)

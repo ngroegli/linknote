@@ -119,7 +119,7 @@ URLCodec.setToURL(content) // Write to window.location.hash
 - Handle parsing errors gracefully
 
 **Implementation Details**:
-- Uses marked.js library (v11.1.1)
+- Uses marked.js library
 - Configured for GitHub Flavored Markdown (GFM)
 - Enables line breaks, header IDs
 - Returns placeholder text for empty input
