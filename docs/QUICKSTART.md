@@ -395,7 +395,7 @@ The build is self-contained with all dependencies bundled - no external CDN need
 
 ---
 
-## ❓ FAQ
+## FAQ
 
 **Q: Is my data safe?**
 A: Yes! It never leaves your browser. But URLs aren't encrypted, so don't put secrets in them.
