@@ -209,4 +209,4 @@ jobs:
           fi
 
           echo "✓ No obvious vulnerable patterns found"
-        continue-on-error: true
+
