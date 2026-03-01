@@ -221,8 +221,8 @@ const EditorManager = {
      * @param {string} content - The Markdown content to preview
      */
     updatePreview(content) {
-        const html = MarkdownEngine.parse(content);
-        this.preview.innerHTML = html;
+        const html = MarkdownEngine.parse(content); // DOMPurify sanitized inside MarkdownEngine.parse()
+        this.preview.innerHTML = html; // DOMPurify.sanitize() applied above via MarkdownEngine
     },
 
     /**
