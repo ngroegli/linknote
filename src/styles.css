@@ -16,7 +16,7 @@
     --text-secondary: #001a70;      /* Primary Blue for secondary text */
     --text-muted: #6b7280;          /* Gray Mid for muted text */
     --border-color: #E5E7EB;        /* Gray Light for borders */
-    --accent-color: #000F3D;        /* Primary Blue for accents */
+    --accent-color: #001a70;        /* Primary Blue for accents */
     --accent-hover: #0027A8;        /* Blue Mid for hover */
     --success-color: #10b981;       /* Keep functional colors */
     --warning-color: #f59e0b;
@@ -102,7 +102,7 @@ body {
 .app-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--accent-color);
+    color: var(--text-primary);
     margin: 0;
 }
 
