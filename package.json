@@ -1,6 +1,6 @@
 {
   "name": "linknote",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Privacy-first, client-side Markdown editor with URL-based storage",
   "type": "module",
   "files": [
