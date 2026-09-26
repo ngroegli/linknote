@@ -156,7 +156,7 @@ const MarkdownEngine = {
             return cleanHtml;
         } catch (error) {
             console.error("Markdown parsing error:", error);
-            return `<p style="color: var(--danger-color);">Error parsing Markdown: ${DOMPurify.sanitize(error.message)}</p>`;
+            return `<p style="color: var(--color-error-fg);">Error parsing Markdown: ${DOMPurify.sanitize(error.message)}</p>`;
         }
     }
 };
